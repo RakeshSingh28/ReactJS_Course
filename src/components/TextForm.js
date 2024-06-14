@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 
 export default function TextForm(props) {
-  const myStyle = { border: "1px solid black" };
+  const [text, setText] = useState("");
+  const myStyle = {
+    border: `1px solid ${props.mode === "light" ? "black" : "white"}`,
+    color: `${
+      text.length === 0 ? "grey" : props.mode === "light" ? "black" : "white"
+    }`,
+  };
   const handleChange = (event) => {
     setText(event.target.value);
   };
@@ -31,10 +37,9 @@ export default function TextForm(props) {
     for (let i = text.length - 1; i >= 0; i--) newText += text.charAt(i);
     setText(newText);
   };
-  const [text, setText] = useState("");
   return (
     <>
-      <div className="mb-3">
+      <div className={`mb-3 text-${props.mode === "light" ? "dark" : "light"}`}>
         <h3
           htmlFor="exampleFormControlTextarea1"
           className="form-label justify-content-center d-flex"
@@ -42,6 +47,10 @@ export default function TextForm(props) {
           {props.heading}
         </h3>
         <textarea
+          style={{
+            backgroundColor: props.mode === "light" ? "white" : "#21252900",
+            color: props.mode === "light" ? "black" : "white",
+          }}
           className="form-control"
           id="exampleFormControlTextarea1"
           autoFocus
@@ -66,7 +75,7 @@ export default function TextForm(props) {
       <button className="btn btn-danger me-2" onClick={handleRSClick}>
         Reverse the String
       </button>
-      <div className="my-3">
+      <div className={`my-3 text-${props.mode === "light" ? "dark" : "light"}`}>
         <h3>Your text summary</h3>
         <h6>
           {text.split(" ").length} words and {text.length} letters
@@ -74,7 +83,7 @@ export default function TextForm(props) {
         <h6>{0.008 * text.split(" ").length} minutes to read</h6>
         <h2>Preview</h2>
         <p style={myStyle} className="p-2">
-          {text}
+          {text.length > 0 ? text : "Enter text above to preview"}
         </p>
       </div>
     </>
