@@ -1,40 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function About() {
-  const [myState, setState] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
-  const [switchType, setBtnState] = useState("Enable Dark Mode");
-  const [btnClass, setBtnClassState] = useState("btn btn-dark my-3");
-  let screenModeClicked = () => {
-    let newState = {
-      color: myState.color === "black" ? "white" : "black",
-      backgroundColor: myState.backgroundColor === "white" ? "black" : "white",
-    };
-    setState(newState);
-    let btnLabel =
-      switchType === "Enable Dark Mode"
-        ? "Enable Light Mode"
-        : "Enable Dark Mode";
-    setBtnState(btnLabel);
-    let newBtnClass = btnClass.includes("btn-dark")
-      ? "btn btn-secondary my-3"
-      : "btn btn-dark my-3";
-    setBtnClassState(newBtnClass);
-  };
+export default function About(props) {
   return (
     <>
       <div
         className="accordion container"
         id="accordionExample"
-        style={myState}
+        style={{
+          color: props.mode === "dark" ? "white" : "black",
+          backgroundColor: props.mode === "dark" ? "#2e3339" : "white",
+        }}
       >
         <h1 className="mb-3 d-flex justify-content-center">About Us</h1>
-        <div className="accordion-item" style={myState}>
+        <div
+          className="accordion-item"
+          style={{
+            color: props.mode === "dark" ? "white" : "black",
+            backgroundColor: props.mode === "dark" ? "#2e3339" : "white",
+          }}
+        >
           <h2 className="accordion-header">
             <button
-              style={myState}
+              style={{
+                color: props.mode === "dark" ? "white" : "black",
+                backgroundColor: props.mode === "dark" ? "#2e3339" : "white",
+              }}
               className="accordion-button"
               type="button"
               data-bs-toggle="collapse"
@@ -62,10 +52,19 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="accordion-item" style={myState}>
+        <div
+          className="accordion-item"
+          style={{
+            color: props.mode === "dark" ? "white" : "black",
+            backgroundColor: props.mode === "dark" ? "#2e3339" : "white",
+          }}
+        >
           <h2 className="accordion-header">
             <button
-              style={myState}
+              style={{
+                color: props.mode === "dark" ? "white" : "black",
+                backgroundColor: props.mode === "dark" ? "#2e3339" : "white",
+              }}
               className="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
@@ -93,10 +92,19 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="accordion-item" style={myState}>
+        <div
+          className="accordion-item"
+          style={{
+            color: props.mode === "dark" ? "white" : "black",
+            backgroundColor: props.mode === "dark" ? "#2e3339" : "white",
+          }}
+        >
           <h2 className="accordion-header">
             <button
-              style={myState}
+              style={{
+                color: props.mode === "dark" ? "white" : "black",
+                backgroundColor: props.mode === "dark" ? "#2e3339" : "white",
+              }}
               className="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
@@ -123,11 +131,6 @@ export default function About() {
               though the transition does limit overflow.
             </div>
           </div>
-        </div>
-        <div>
-          <button className={btnClass} onClick={screenModeClicked}>
-            {switchType}
-          </button>
         </div>
       </div>
     </>
