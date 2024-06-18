@@ -97,7 +97,7 @@ export default function TextForm(props) {
         <h6>
           {text.length ? text.replace(/\s+/g, ' ').trim().split(" ").length : 0} words and {text.length} letters
         </h6>
-        <h6>{0.008 * text.replace(/\s+/g, ' ').trim().split(" ").length} minutes to read</h6>
+        <h6>{text.length ? 0.008 * text.replace(/\s+/g, ' ').trim().split(" ").length : 0} minutes to read</h6>
         <h2>Preview</h2>
         <p style={myStyle} className="p-2">
           {text.length > 0 ? text : "Enter text above to preview"}
