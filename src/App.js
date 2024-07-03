@@ -6,10 +6,20 @@ import TextForm from "./components/TextForm";
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+const removeClassList = () => {
+  document.body.classList.remove("bg-primary");
+  document.body.classList.remove("bg-dark");
+  document.body.classList.remove("bg-light");
+  document.body.classList.remove("bg-danger");
+  document.body.classList.remove("bg-warning");
+  document.body.classList.remove("bg-success");
+};
 function App() {
   const [mode, setMode] = useState("light");
-  let changeMode = () => {
-    if (mode === "light") {
+  let changeMode = (cls) => {
+    removeClassList();
+    document.body.classList.add(`bg-${cls}`);
+    if (mode === "light" && cls === null) {
       setMode("dark");
       document.body.style.backgroundColor = "#212529ed";
       showAlert("Dark mode has been enabled", "success");

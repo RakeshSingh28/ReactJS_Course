@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 
 export default function Navbar({ title = "Set title here", mode, toggleMode }) {
   let myStyle = { width: "146px", cursor: "pointer" };
+  let navbarBtnStyle = {
+    height: "25px",
+    width: "30px",
+    borderRadius: "100px",
+    cursor: "pointer",
+  };
   return (
-    <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
+    <nav
+      className={`navbar justify-content-end navbar-expand-lg navbar-${mode} bg-${mode}`}
+    >
       <div className="container-fluid">
         <Link className="navbar-brand" to="./">
           {title}
@@ -25,8 +33,8 @@ export default function Navbar({ title = "Set title here", mode, toggleMode }) {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link
-                className="nav-link active"
-                to="./"
+                className="nav-link"
+                to="/"
                 onClick={() => {
                   document.title = "TextUtils - Home";
                 }}
@@ -37,7 +45,7 @@ export default function Navbar({ title = "Set title here", mode, toggleMode }) {
             <li className="nav-item">
               <Link
                 className="nav-link"
-                to="./about"
+                to="/about"
                 onClick={() => {
                   document.title = "TextUtils - About";
                 }}
@@ -48,14 +56,48 @@ export default function Navbar({ title = "Set title here", mode, toggleMode }) {
           </ul>
         </div>
       </div>
-      <div className="form-check form-switch" style={{cursor : 'pointer'}}>
+      <div
+        className="bg-primary mx-2"
+        style={navbarBtnStyle}
+        onClick={() => {
+          toggleMode("primary");
+        }}
+      ></div>
+      <div
+        className="bg-danger mx-2"
+        style={navbarBtnStyle}
+        onClick={() => {
+          toggleMode("danger");
+        }}
+      ></div>
+      <div
+        className="bg-warning mx-2"
+        style={navbarBtnStyle}
+        onClick={() => {
+          toggleMode("warning");
+        }}
+      ></div>
+      <div
+        className="bg-success mx-2"
+        style={navbarBtnStyle}
+        onClick={() => {
+          toggleMode("success");
+        }}
+      ></div>
+      <div
+        className="form-check form-switch ps-5"
+        style={{ cursor: "pointer" }}
+      >
         <input
+          checked={mode === "dark"}
           style={{ cursor: "pointer" }}
           className="form-check-input"
           type="checkbox"
           role="switch"
           id="flexSwitchCheckDefault"
-          onClick={toggleMode}
+          onClick={() => {
+            toggleMode(null);
+          }}
         />
         <label
           className={`form-check-label text-${
